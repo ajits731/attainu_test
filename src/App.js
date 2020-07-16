@@ -115,13 +115,13 @@ class CounterApp extends React.Component {
             if(delete_arr.indexOf(arg.id.toString()) === -1) {
               return (
                 <TableRow>
-                  <TableCell>
-                    <Chip className="countChip" label={(arg.value === undefined || arg.value === 0 ) ? 'Zero': arg.value} />
+                  <TableCell id="chip-td">
+                    <Chip className={`countChip ${(arg.value === undefined || arg.value === 0 ) ? "" : "activeChip"}`} label={(arg.value === undefined || arg.value === 0 ) ? 'Zero': arg.value} />
                   </TableCell>
                   <TableCell>
-                    <Button className="countBtn" variant="contained" color="primary"><AddBoxIcon onClick={() => {this.handleMathInput(arg.id, 'add')}} className="addBtn" /></Button>
-                    <Button className="countBtn"  variant="contained" color="primary"><IndeterminateCheckBoxIcon onClick={() => {this.handleMathInput(arg.id, 'sub')}} className="subBtn" /></Button>
-                    <Button className="countBtn"  variant="contained" color="secondary"><DeleteIcon onClick={() => {this.handleMathInput(arg.id, 'delete')}} className="delBtn" /></Button>
+                    <Button onClick={() => {this.handleMathInput(arg.id, 'add')}} className="countBtn" variant="contained" color="primary"><AddBoxIcon className="addBtn" /></Button>
+                    <Button onClick={() => {this.handleMathInput(arg.id, 'sub')}} className="countBtn"  variant="contained" color="primary"><IndeterminateCheckBoxIcon className="subBtn" /></Button>
+                    <Button onClick={() => {this.handleMathInput(arg.id, 'delete')}} className="countBtn"  variant="contained" color="secondary"><DeleteIcon className="delBtn" /></Button>
                   </TableCell>
                 </TableRow>
                 )
@@ -134,6 +134,5 @@ class CounterApp extends React.Component {
     );
   }
 }
-
 
 export default CounterApp;

@@ -66,3 +66,12 @@ tr, td {
 .countChip span {
   font-size: 24px !important;
 }
+
+#chip-td {
+  width: 10% !important;
+}
+
+.activeChip {
+  color: #fff !important;
+  background-color: #007bff !important;
+}
