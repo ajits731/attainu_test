@@ -23,12 +23,14 @@ class CounterApp extends React.Component {
      this.state = {
        counterCount: 0,
        delete_index:[],
-       value:0
+       value:0,
+       search_str_val:''
      };
 
      this.handleMathInput = this.handleMathInput.bind(this);
      this.resetRows = this.resetRows.bind(this);
      this.resetNumbers = this.resetNumbers.bind(this);
+     this.handleChange = this.handleChange.bind(this);
 
   }
 
@@ -72,6 +74,12 @@ class CounterApp extends React.Component {
     }
   }
 
+  handleChange(e) {
+    this.setState({
+      search_str_val: e.target.value
+    });
+  }
+
   render() {
     
     const row_arr = [
@@ -87,7 +95,22 @@ class CounterApp extends React.Component {
         count_arr.push(i);
       }
     }
+
+    const data_set = [{a: 1}, {b: 2}, {c: 3}];
+
+    var search_str = this.state.search_str_val;
+
+    var filtered_val = data_set.map((arg) => {
+      if(Object.keys(arg)[0] === this.state.search_str_val) {
+        return arg[this.state.search_str_val]
+      } else {
+        return ''
+      }
+    });
+    console.log('this.state:', this.state);
+
     return (
+   
       <div className="root">
         <AppBar position="static" className="topBar">
           <Toolbar>
@@ -108,6 +131,8 @@ class CounterApp extends React.Component {
             <i className="fa fa-recycle"></i>
           </Button>
         </div>
+        <input type="text" value={this.state.search_str_val} onChange={this.handleChange} />
+          <p>{filtered_val}</p>
         <div className="col-sm-12 count-sec">
           <Table>
             <TableBody>
